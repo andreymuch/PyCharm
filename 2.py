@@ -95,7 +95,7 @@ while True:
                 if Ka[i].surname[j] == surname and Ka[i].name[j] == name:
                     is_find = True
                     Ka[i].surname.pop(j)
-                    Ka[i].name.pop(i)
+                    Ka[i].name.pop(j)
                     break
             if is_find == True:
                 break
