@@ -26,7 +26,8 @@ while True:
         _     3: Вывод по Фамилии            _
         _     4: Дабл эл                     _
         _     5: Вывод БД                    _
-        _     6: Завершение прогграмы        _
+        _     6: Удаление эл                 _
+        _     7: Завершение прогграмы        _
         ______________________________________
         """))
     except TypeError:
@@ -62,27 +63,45 @@ while True:
     elif n == 4:
         # input new string to data base
         f = open('students.dat', 'ab')
-        st = Cabinet()
-        st.phone = input("Введите номер").strip()
-        st.num = input("Введите номер кабинета").strip()
+        Ka = Cabinet()
+        Ka.phone = input("Введите номер").strip()
+        Ka.num = input("Введите номер кабинета").strip()
         kol = int(input("Введите кол-во новых людей").strip())
-        st.name = []
-        st.surname = []
-        
+        Ka.name = []
+        Ka.surname = []
+
         # append people to cabinet
         for i in range(kol):
             b = list(input("Введите человека(ФИ через пробел)").split())
-            st.name.append(b[0])
-            st.surname.append(b[1])
-        Ka.append(st)
+            Ka.name.append(b[0])
+            Ka.surname.append(b[1])
+        Ka.append(Ka)
         pickle.dump(Ka, f)
         f.close()
-        
+
     elif n == 5:
         # output data base
         for i in Ka:
             print(i.phone, i.num, *i.name, *i.surname)
+
     elif n == 6:
+        f = open('students.dat', 'ab')
+        Ka = Cabinet()
+        surname, name = input("Введите человека(ФИ через пробел)\n").split()
+        # delete person in data
+        is_find = False
+        for i in range(len(Ka)):
+            for j in range(len(Ka[i].surname)):
+                if Ka[i].surname[j] == surname and Ka[i].name[j] == name and is_find == False:
+                    is_find = True
+                    Ka[i].surname.pop(j)
+                    Ka[i].name.pop(i)
+                    break
+            if is_find == False:
+                break
+        pickle.dump(Ka, f)
+        f.close()
+    elif n == 7:
         break
     else:
         print('Введите снова')
