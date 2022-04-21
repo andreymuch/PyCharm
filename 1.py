@@ -22,7 +22,7 @@ while True:
     x = f.readline()
     if not x:
         break
-    # init
+    # init, we add new dataes to the class Kab objects and append new oblect of this class to St list
     x = x.split(' ', 2)
     st = Kab()
     st.phone = x[0]
@@ -33,13 +33,17 @@ while True:
 
     # append ordered dates to St
     St.append(st)
+    # print dates, that had been loaded to the data base in console
     print(st.phone, st.num, st.name, st.surname)
 
-# entry to database a new page
+# open data base file
 file_out = open('students.dat', 'wb')
+# entry to database a new page
 pickle.dump(St, file_out)
+# close files to safe result and correct end of programm
 file_out.close()
 f.close()
 
+# for testing
 if __name__ == "__main__":
     pass
