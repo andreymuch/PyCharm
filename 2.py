@@ -85,19 +85,19 @@ while True:
             print(i.phone, i.num, *i.name, *i.surname)
 
     elif n == 6:
+        # delete person in data
         f = open('students.dat', 'ab')
         Ka = Cabinet()
         surname, name = input("Введите человека(ФИ через пробел)\n").split()
-        # delete person in data
         is_find = False
         for i in range(len(Ka)):
             for j in range(len(Ka[i].surname)):
-                if Ka[i].surname[j] == surname and Ka[i].name[j] == name and is_find == False:
+                if Ka[i].surname[j] == surname and Ka[i].name[j] == name:
                     is_find = True
                     Ka[i].surname.pop(j)
                     Ka[i].name.pop(i)
                     break
-            if is_find == False:
+            if is_find == True:
                 break
         pickle.dump(Ka, f)
         f.close()
