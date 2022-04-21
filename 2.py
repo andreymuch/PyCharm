@@ -1,7 +1,8 @@
 import pickle
 
 
-class Kab:
+class Cabinet:
+    # cabinet phoone number int, two symbols
     phone = None
     num = None
     name = None
@@ -10,6 +11,7 @@ class Kab:
 
 # open database to read dates from it
 f = open('students.dat', 'rb')
+# all data base in text format
 Ka = pickle.load(f)
 f.close()
 
@@ -33,7 +35,9 @@ while True:
         break
 
     if n == 1:
+        # input telephone number for cabinet, that you find
         ph = input()
+        # find and print out
         for i in range(len(Ka)):
             if ph == Ka[i].phone:
                 print(Ka[i].num, end=": ")
@@ -43,25 +47,29 @@ while True:
                     else:
                         print(Ka[i].name[fio], Ka[i].surname[fio])
     elif n == 2:
+        # cabinet number
         nu = input()
         for i in Ka:
             if nu == i.num:
                 print(i.phone)
     elif n == 3:
+        # surname
         sur = input("Введите Фамилию").strip()
         for i in range(len(Ka)):
             for j in range(len(Ka[i].surname)):
                 if sur == Ka[i].surname[j]:
                     print(Ka[i+j].phone, Ka[i+j].num)
     elif n == 4:
+        # input new string to data base
         f = open('students.dat', 'ab')
-        st = Kab()
+        st = Cabinet()
         st.phone = input("Введите номер").strip()
         st.num = input("Введите номер кабинета").strip()
         kol = int(input("Введите кол-во новых людей").strip())
         st.name = []
         st.surname = []
-
+        
+        # append people to cabinet
         for i in range(kol):
             b = list(input("Введите человека(ФИ через пробел)").split())
             st.name.append(b[0])
@@ -69,7 +77,9 @@ while True:
         Ka.append(st)
         pickle.dump(Ka, f)
         f.close()
+        
     elif n == 5:
+        # output data base
         for i in Ka:
             print(i.phone, i.num, *i.name, *i.surname)
     elif n == 6:
