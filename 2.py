@@ -1,7 +1,7 @@
 import pickle
 
 
-class Cabinet:
+class Kab:
     # cabinet phoone number int, two symbols
     phone = None
     num = None
@@ -55,7 +55,7 @@ while True:
                 print(i.phone)
     elif n == 3:
         # surname
-        sur = input("Введите Фамилию").strip()
+        sur = input("Введите Фамилию ").strip()
         for i in range(len(Ka)):
             for j in range(len(Ka[i].surname)):
                 if sur == Ka[i].surname[j]:
@@ -63,16 +63,16 @@ while True:
     elif n == 4:
         # input new string to data base
         f = open('students.dat', 'ab')
-        Ka = Cabinet()
-        Ka.phone = input("Введите номер").strip()
-        Ka.num = input("Введите номер кабинета").strip()
-        kol = int(input("Введите кол-во новых людей").strip())
+        Ka = Kab()
+        Ka.phone = input("Введите номер ").strip()
+        Ka.num = input("Введите номер кабинета ").strip()
+        kol = int(input("Введите кол-во новых людей ").strip())
         Ka.name = []
         Ka.surname = []
 
         # append people to cabinet
         for i in range(kol):
-            b = list(input("Введите человека(ФИ через пробел)").split())
+            b = list(input("Введите человека(ФИ через пробел) ").split())
             Ka.name.append(b[0])
             Ka.surname.append(b[1])
         Ka.append(Ka)
@@ -87,8 +87,8 @@ while True:
     elif n == 6:
         # delete person in data
         f = open('students.dat', 'ab')
-        Ka = Cabinet()
-        surname, name = input("Введите человека(ФИ через пробел)\n").split()
+
+        surname, name = input("Введите человека(ФИ через пробел) ").split()
         is_find = False
         for i in range(len(Ka)):
             for j in range(len(Ka[i].surname)):
